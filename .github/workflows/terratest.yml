@@ -48,8 +48,8 @@ jobs:
     environment: dev
     needs: terratest
     steps:
-      - name: Notify deployment ${{ env.NAME }}
-        run: echo "I would be ready to deploy now - NAME is ${{ env.NAME }}"
+      - name: Notify deployment ${{ vars.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
   deploy-staging:
     needs:
         - terratest
@@ -57,6 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - name: Notify deployment ${{ env.NAME }}
-        run: echo "I would be ready to deploy now - NAME is ${{ env.NAME }}"
+      - name: Notify deployment ${{ vars.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
 
