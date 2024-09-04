@@ -25,6 +25,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
+        cache: false
         go-version-file: 'test/go.mod'
         cache-dependency-path: 'test/go.sum'
 
