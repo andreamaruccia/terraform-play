@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    # needs: terratest
+    steps:
+      - name: Notify deployment ${{ vars.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
+  deploy-staging:
+    needs:
+        # - terratest
+        - deploy-dev
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Notify deployment ${{ vars.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
+
