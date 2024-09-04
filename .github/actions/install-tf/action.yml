@@ -1,0 +1,28 @@
+name: 'install-tf'
+description: 'install tf'
+inputs:
+  terraform-version-file:
+    description: 'the file containing the terraform version'
+    required: true
+    default: '.terraform-version'
+outputs:
+  terraform-version:
+    description: "the terraform version actually installed"
+    value: ${{ steps.extract-tf-version.outputs.tf-version }}
+runs:
+  using: "composite"
+  steps:
+  - name: Extract Terraform version
+    id: extract-tf-version
+    env:
+      TF_VERSION_FILE: ${{ inputs.terraform-version-file }}
+    run: |
+      VER=$(cat $TF_VERSION_FILE)
+      echo "TF_VERSION=$VER" >> $GITHUB_ENV
+      echo "Using Terraform version $VER"
+      echo "tf-version=$(echo $VER)" >> $GITHUB_OUTPUT
+
+  - name: Install Terraform
+    uses: hashicorp/setup-terraform@v3
+    with:
+      terraform_version: ${{ env.TF_VERSION }}

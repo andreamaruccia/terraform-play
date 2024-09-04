@@ -2,12 +2,6 @@ name: Terratest
 
 on:
   - workflow_call
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
 
 jobs:
   terratest:
@@ -17,11 +11,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set variables
-      run: |
-        VER=$(cat tf/.terraform-version)
-        echo "TF_VERSION=$VER" >> $GITHUB_ENV
-        echo "Using Terraform version $VER"
+    - name: Install Terraform
+      uses: ./.github/actions/install-tf
+      with:
+        terraform-version-file: tf/.terraform-version
 
     - name: Set up Go
       uses: actions/setup-go@v5
@@ -29,11 +22,6 @@ jobs:
         cache: false
         go-version-file: 'test/go.mod'
         cache-dependency-path: 'test/go.sum'
-
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: ${{ env.TF_VERSION }}
 
     - name: Install dependencies
       run: |
