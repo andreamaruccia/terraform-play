@@ -47,15 +47,15 @@ jobs:
     environment: dev
     needs: terratest
     steps:
-      - name: Notify deployment ${{ github.env.NAME }}
-        run: echo "I would be ready to deploy now - NAME is ${{ github.env.NAME }}"
-  deploy-prod:
+      - name: Notify deployment ${{ env.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ env.NAME }}"
+  deploy-staging:
     needs:
         - terratest
         - deploy-dev
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - name: Notify deployment ${{ github.env.NAME }}
-        run: echo "I would be ready to deploy now - NAME is ${{ github.env.NAME }}"
+      - name: Notify deployment ${{ env.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ env.NAME }}"
 
