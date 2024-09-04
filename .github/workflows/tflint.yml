@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   tflintandfmt:
-    name: 'Terraform'
+    name: 'Terraform Lint and Format'
     runs-on: ubuntu-latest
 
     steps:
