@@ -25,8 +25,8 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version-file: '**/test/go.mod'
-        cache-dependency-path: '**/test/go.sum'
+        go-version-file: './test/go.mod'
+        cache-dependency-path: './test/go.sum'
 
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v3
@@ -35,8 +35,10 @@ jobs:
 
     - name: Install dependencies
       run: |
+        cd test
         go mod tidy
 
     - name: Run Terratest
       run: |
+        cd test
         go test -v ./test/...
