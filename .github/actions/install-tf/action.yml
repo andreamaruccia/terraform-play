@@ -16,6 +16,7 @@ runs:
     id: extract-tf-version
     env:
       TF_VERSION_FILE: ${{ inputs.terraform-version-file }}
+    shell: bash
     run: |
       VER=$(cat $TF_VERSION_FILE)
       echo "TF_VERSION=$VER" >> $GITHUB_ENV
