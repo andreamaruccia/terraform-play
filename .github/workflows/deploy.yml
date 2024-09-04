@@ -9,20 +9,21 @@ on:
       - main
 
 jobs:
+  tests:
+    uses: ./.github/workflows/terratest.yml
   deploy-dev:
     runs-on: ubuntu-latest
     environment: dev
-    # needs: terratest
+    needs: tests
     steps:
       - name: Notify deployment ${{ vars.NAME }}
         run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
   deploy-staging:
     needs:
-        # - terratest
+        - tests
         - deploy-dev
     runs-on: ubuntu-latest
     environment: staging
     steps:
       - name: Notify deployment ${{ vars.NAME }}
         run: echo "I would be ready to deploy now - NAME is ${{ vars.NAME }}"
-

@@ -1,12 +1,13 @@
 name: Terratest
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  - workflow_call
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   terratest:
