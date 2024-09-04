@@ -21,9 +21,11 @@ jobs:
       uses: actions/setup-go@v5
       with:
         go-version: '1.23'
+        go-version-file: 'test/go.mod'
+        cache-dependency-path: 'test/go.sum'
 
     - name: Install Terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: 1.9.5
 
