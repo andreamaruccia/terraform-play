@@ -42,9 +42,18 @@ jobs:
       run: |
         cd test
         go test -v
-  fakedeploy:
+  deploy-dev:
     runs-on: ubuntu-latest
+    environment: dev
     needs: terratest
     steps:
-      - name: Notify deployment
-        run: echo "I would be ready to deploy now"
+      - name: Notify deployment ${{ github.env.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ github.env.NAME }}"
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: terratest
+    steps:
+      - name: Notify deployment ${{ github.env.NAME }}
+        run: echo "I would be ready to deploy now - NAME is ${{ github.env.NAME }}"
+
