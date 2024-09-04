@@ -20,12 +20,13 @@ jobs:
       run: |
         VER=$(cat tf/.terraform-version)
         echo "TF_VERSION=$VER" >> $GITHUB_ENV
+        echo "Using Terraform version $VER"
 
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        go-version-file: './test/go.mod'
-        cache-dependency-path: './test/go.sum'
+        go-version-file: '**/test/go.mod'
+        cache-dependency-path: '**/test/go.sum'
 
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v3
