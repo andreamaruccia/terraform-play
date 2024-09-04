@@ -37,7 +37,9 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      working-directory: tf
       run: terraform fmt
     
     - name: Terraform lint
+      working-directory: tf
       run: tflint
