@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Set variables
       run: |
-        VER=$(cat .terraform-version)
+        VER=$(cat ./tf/.terraform-version)
         echo "TF_VERSION=$VER" >> $GITHUB_ENV
 
     - name: Checkout repository
