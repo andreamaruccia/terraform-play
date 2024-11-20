@@ -1,6 +1,6 @@
-# provider "aws" {
-#   region = var.region
-# }
+provider "aws" {
+  region = var.region
+}
 
 # resource "aws_instance" "example" {
 #   ami           = var.ami
@@ -16,6 +16,13 @@ terraform {
   # 0.12.26 as the minimum version, as that version added support for required_providers with source URLs, making it
   # forwards compatible with 0.13.x code.
   required_version = ">= 1.9.5"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.5.0"
+    }
+  }
 }
 
 # website::tag::1:: The simplest possible Terraform module: it just outputs "Hello, World!"
